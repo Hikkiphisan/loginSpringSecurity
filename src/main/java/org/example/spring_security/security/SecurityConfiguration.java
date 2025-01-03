@@ -21,7 +21,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 //    //Phương thức configure(AuthenticationManagerBuilder auth): xác thực thông tin đăng nhập của người dùng.
 //
 
-
+    //xac thuc
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
         auth.inMemoryAuthentication()
@@ -35,6 +35,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
     }
 
+    //khien cho password ma hoa, tro thanh dong bam
     @Bean
     public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
@@ -42,7 +43,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
 
 
-
+//phan quyen
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http     .csrf().disable()  // Thêm dòng này
@@ -58,13 +59,10 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .formLogin()  // sử dụng form login mặc đinh. Bạn có thể tự tạo và đưa vào view login riêng của dự án.
                      .loginPage("/login")  // Chỉ định URL của form đăng nhập tùy chỉnh.
                      .loginProcessingUrl("/login")  // Xử lý đăng nhập tại URL này
-
-
                 .failureHandler((request, response, exception) -> {
                     System.out.println("Login failed: " + exception.getMessage());
                     response.sendRedirect("/login?error");
                 })
-
 
 //                      .defaultSuccessUrl("/index")    // URL chuyển hướng khi login thành công
 //                      .failureUrl("/login?error")    // URL chuyển hướng khi login thất bại
@@ -78,8 +76,10 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
 
                 .and()
-                .logout()
-                .logoutRequestMatcher(new AntPathRequestMatcher("/logout"));  //logoutRequestMatcher(): chỉ định đường link để thực thi hành động logout.
+                .logout() //Xóa thông tin người dùng trong phiên (Session),  Xóa Cookie xác thực (Authentication Cookies)
+                .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))  //logoutRequestMatcher(): chỉ định đường link để thực thi hành động logout.
+                .logoutSuccessUrl("/index") // URL chuyển hướng sau logout
+                .permitAll();
     }
 }
 //Phương thức configure(HttpSecurity http): cấu hình bảo mật dựa trên các yêu cầu HTTP. Mặc định các yêu cầu đều được bảo mật nhưng chúng ta có thể tự config cho các yêu cầu của dự án.
