@@ -81,6 +81,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/MorphSVGPlugin.min.js"></script>
 </head>
 <body>
+<!--<form action="/login" method="post">-->
 <div class="login-container">
     <div class="svgContainer">
         <svg class="mySVG" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 200 200">
@@ -179,18 +180,29 @@
         </svg>
     </div>
 
-    <div class="inputGroup inputGroup1">
-        <label for="email">Email</label>
-        <input type="text" id="email" class="email" maxlength="256"/>
-        <p class="helper helper1">email@domain.com</p>
-    </div>
-    <div class="inputGroup inputGroup2">
-        <label for="password">Password</label>
-        <input type="password" id="password" class="password" />
-    </div>
-    <div class="inputGroup inputGroup3">
-        <button id="login">Log in</button>
-    </div>
+
+
+
+    <form action="/login" method="POST">
+        <div class="inputGroup inputGroup1">
+            <label for="email">Username</label>
+            <input type="text" id="email" name="username" class="email" maxlength="256" required placeholder="Enter your username" />
+        </div>
+        <div class="inputGroup inputGroup2">
+            <label for="password">Password</label>
+            <input type="password" id="password" name="password" class="password" required placeholder="Enter your password" />
+        </div>
+        <div class="inputGroup inputGroup3">
+            <button type="submit">Log in</button>
+        </div>
+        <div class="error-message">
+            <!-- This can be dynamically generated if there's an error, for example -->
+            <!-- <p>Invalid username or password</p> -->
+        </div>
+        <input type="hidden" name="_csrf" value="${_csrf.token}" />
+    </form>
+
+
 </div>
 
 <script>

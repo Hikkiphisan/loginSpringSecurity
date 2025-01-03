@@ -34,7 +34,7 @@ public class UserController {
 
 
 
-    @GetMapping("/login_sample")
+    @GetMapping("/login")
     public String login() {
         return "/login";  // Trả về tên của trang HTML (login.html)
     }
