@@ -81,7 +81,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/MorphSVGPlugin.min.js"></script>
 </head>
 <body>
-<!--<form action="/login" method="post">-->
+<form action="/login" method="post">
 <div class="login-container">
     <div class="svgContainer">
         <svg class="mySVG" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 200 200">
@@ -183,7 +183,7 @@
 
 
 
-    <form action="/login" method="POST">
+<!--    <form action="/login" method="POST">-->
         <div class="inputGroup inputGroup1">
             <label for="email">Username</label>
             <input type="text" id="email" name="username" class="email" maxlength="256" required placeholder="Enter your username" />
@@ -200,11 +200,11 @@
             <!-- <p>Invalid username or password</p> -->
         </div>
         <input type="hidden" name="_csrf" value="${_csrf.token}" />
-    </form>
+<!--    </form>-->
 
 
 </div>
-
+</form>
 <script>
     // Initialize variables
     var email = document.querySelector('#email'),
@@ -440,5 +440,6 @@
     TweenMax.set(armR, {x: -93, y: 220, rotation: -105, transformOrigin: "top right"});
 
 </script>
+<!--</form>-->
 </body>
 </html>
